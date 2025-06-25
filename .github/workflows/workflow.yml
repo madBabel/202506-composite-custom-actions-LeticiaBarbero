@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       - name: Action
-        uses: ./.github/actions/composite-deps
+        uses: ./.github/actions/composite-deps/action.yaml
         with:
           node-version: ${{env.NODE_VERSION}}
           work-dir: ${{env.WORK_DIR}}
