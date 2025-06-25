@@ -1,25 +1,34 @@
 name: my-composite-action
+description: 'A composite action to set up Node.js, install dependencies, and run unit tests'
 inputs:
   node-version:
     description: 'Node.js version to use'
     required: true
     default: '20.x'
+  work-dir:
+    description: 'Working directory for the action'
+    required: true
+    default: '.'
 
 runs:
   using: composite
   steps:
       - name: Checkout Code
         shell: bash
+        working-directory: ${{inputs.work-dir}}
         uses: actions/checkout@v4
       - name: Setup Node
         shell: bash
+        working-directory: ${{inputs.work-dir}}
         uses: actions/setup-node@v4
         with:
           node-version: ${{env.NODE_VERSION}}
       - name: Install Dependencies
         shell: bash
+        working-directory: ${{inputs.work-dir}}
         run: npm ci
       - name: Run Unit Tests
         shell: bash
+        working-directory: ${{inputs.work-dir}}
         run: npm run test
 
