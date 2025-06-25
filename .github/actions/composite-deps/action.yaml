@@ -13,13 +13,8 @@ inputs:
 runs:
   using: composite
   steps:
-      - name: Checkout Code
-        shell: bash
-        working-directory: ${{inputs.work-dir}}
-        uses: actions/checkout@v4
       - name: Setup Node
         shell: bash
-        working-directory: ${{inputs.work-dir}}
         uses: actions/setup-node@v4
         with:
           node-version: ${{env.NODE_VERSION}}
